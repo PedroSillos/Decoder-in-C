@@ -4,7 +4,8 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-#include <conio.h>
+//#include <conio.h>
+#include <curses.h>
 #include <malloc.h>
 #include <string.h>
 
@@ -42,28 +43,34 @@ NO* decodificar(char* entrada);
 // necessitar
 //------------------------------------------
 NO* decodificar(char* entrada) {
+    printf("\ndecodificar_comeco\n");
 
 	NO* resp;
 	resp = NULL;
 
-	// seu codigo AQUI
-
+	printf("\ndecodificar_fim (1 linha antes do 'return resp')\n");
 	return resp;
 }
-
-
-
 //---------------------------------------------------------
 // use main() para fazer chamadas de teste ao seu programa
 //---------------------------------------------------------
 int main() {
+    printf("\nmain_comeco\n");
 
-	NO* p = NULL;
-
-	//transformar o string entrada em uma lista ligada p
+	char entrada[] = "frase de teste5!";
 
 	NO* teste = NULL;
-	char entrada[] = "frase de teste5!";
+
+	printf("\n");
+	printf(entrada);
+    printf("\n");
+
+    char char_teste = entrada[0];
+    printf("\n");
+	printf(char_teste);
+    printf("\n");
+
 	teste = decodificar(entrada);
 
+    printf("\nmain_fim\n");
 }
