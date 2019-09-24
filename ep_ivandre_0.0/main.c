@@ -45,8 +45,142 @@ NO* decodificar(char* entrada);
 NO* decodificar(char* entrada) {
     printf("\ndecodificar_comeco\n");
 
-	NO* resp;
-	resp = NULL;
+	NO* resp = NULL;
+	NO* ultimo = NULL;
+
+    for(int i = 0; i < strlen(entrada); i++){
+
+        if(entrada[i] =='0') {
+            if(i == strlen(entrada)-1) { //eh o ultimo char
+                if(resp==NULL){ //eh o unico char da string
+                    resp = (NO*)malloc(sizeof(NO));
+                    resp->ch = entrada[i];
+                    resp->prox = NULL;
+
+                    ultimo = resp;
+                }
+                else { //nao eh o unico char da string
+                    NO* novo = (NO*)malloc(sizeof(NO));
+                    novo->ch = entrada[i];
+                    novo->prox = NULL;
+
+                    ultimo->prox = novo;
+                    ultimo = novo;
+                }
+            }
+            else { //nao eh o ultimo char
+                i = i + 1; //pula o proximo char
+            }
+        }
+        else if(entrada[i] =='1') {
+            if(i == strlen(entrada)-1) { //eh o ultimo char
+                if(resp==NULL){ //eh o unico char da string
+                    resp = (NO*)malloc(sizeof(NO));
+                    resp->ch = entrada[i];
+                    resp->prox = NULL;
+
+                    ultimo = resp;
+                }
+                else { //nao eh o unico char da string
+                    NO* novo = (NO*)malloc(sizeof(NO));
+                    novo->ch = entrada[i];
+                    novo->prox = NULL;
+
+                    ultimo->prox = novo;
+                    ultimo = novo;
+                }
+            }
+            else { //nao eh o ultimo char
+                if(resp==NULL){ //string comeca com 1 (tem que resolver o caso "11")
+                    resp = (NO*)malloc(sizeof(NO));
+                    resp->ch = entrada[i+1]; //guarda o char depois do 1
+                    resp->prox = NULL;
+
+                    ultimo = resp;
+
+                    i = i + 1;
+                }
+                else { //string nao comeca com 1 (ainda tem que resolver o caso "11")
+                    NO* novo = (NO*)malloc(sizeof(NO));
+                    novo->ch = entrada[i+1];
+                    novo->prox = NULL;
+
+                    ultimo->prox = novo;
+                    ultimo = novo;
+
+                    i = i + 1;
+                }
+            }
+        }
+        else if(entrada[i]=='2'|| entrada[i]=='3'|| entrada[i]=='4'|| entrada[i]=='5'|| entrada[i]=='6'|| entrada[i]=='7'|| entrada[i]=='8'|| entrada[i]=='9' ) {
+            if(i == strlen(entrada)-1) { //eh o ultimo char
+                if(resp==NULL){ //eh o unico char da string
+                    resp = (NO*)malloc(sizeof(NO));
+                    resp->ch = entrada[i];
+                    resp->prox = NULL;
+
+                    ultimo = resp;
+                }
+                else { //nao eh o unico char da string
+                    NO* novo = (NO*)malloc(sizeof(NO));
+                    novo->ch = entrada[i];
+                    novo->prox = NULL;
+
+                    ultimo->prox = novo;
+                    ultimo = novo;
+                }
+            }
+            else { //nao eh o ultimo char
+                if(resp==NULL){ //string comeca com i
+                    resp = (NO*)malloc(sizeof(NO));
+                    resp->ch = entrada[i+1];
+                    resp->prox = NULL;
+
+                    ultimo = resp;
+
+                    for(int j = 0; j < entrada[i]-1; j++) { //-1 pq 1 ja foi no resp
+                        NO* novo = (NO*)malloc(sizeof(NO));
+                        novo->ch = entrada[i+1];
+                        novo->prox = NULL;
+
+                        ultimo->prox = novo;
+                        ultimo = novo;
+                    }
+
+                    i = i + 1;
+                }
+                else { //string nao comeca com i
+                    for(int j = 0; j < entrada[i]; j++) { //-1 pq 1 ja foi no resp
+                        NO* novo = (NO*)malloc(sizeof(NO));
+                        novo->ch = entrada[i+1];
+                        novo->prox = NULL;
+
+                        ultimo->prox = novo;
+                        ultimo = novo;
+                    }
+
+                    i = i + 1;
+                }
+            }
+        }
+        else { //nao eh numero
+            if(resp==NULL){ //string comeca com i
+                    resp = (NO*)malloc(sizeof(NO));
+                    resp->ch = entrada[i];
+                    resp->prox = NULL;
+
+                    ultimo = resp;
+            }
+            else { //string nao comeca com i
+                NO* novo = (NO*)malloc(sizeof(NO));
+                novo->ch = entrada[i];
+                novo->prox = NULL;
+
+                ultimo->prox = novo;
+                ultimo = novo;
+            }
+        }
+    }
 
 	printf("\ndecodificar_fim (1 linha antes do 'return resp')\n");
 	return resp;
@@ -59,18 +193,18 @@ int main() {
 
 	char entrada[] = "frase de teste5!";
 
-	NO* teste = NULL;
-
-	printf("\n");
+    printf("\n");
 	printf(entrada);
     printf("\n");
 
-    char char_teste = entrada[0];
-    printf("\n");
-	printf(char_teste);
-    printf("\n");
+	NO* teste = NULL;
 
 	teste = decodificar(entrada);
+
+	while(teste) {
+        printf("%c",teste->ch);
+        teste=teste->prox;
+	}
 
     printf("\nmain_fim\n");
 }
