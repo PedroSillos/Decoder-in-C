@@ -43,8 +43,6 @@ NO* decodificar(char* entrada);
 // necessitar
 //------------------------------------------
 NO* decodificar(char* entrada) {
-    printf("\ndecodificar_comeco\n");
-
 	NO* resp = NULL;
 	NO* ultimo = NULL;
 
@@ -138,7 +136,7 @@ NO* decodificar(char* entrada) {
 
                     ultimo = resp;
 
-                    for(int j = 0; j < entrada[i]-1; j++) { //-1 pq 1 ja foi no resp
+                    for(int j = 0; j < ((entrada[i] - '0') - 1); j++) { //-1 pq 1 ja foi no resp
                         NO* novo = (NO*)malloc(sizeof(NO));
                         novo->ch = entrada[i+1];
                         novo->prox = NULL;
@@ -150,7 +148,7 @@ NO* decodificar(char* entrada) {
                     i = i + 1;
                 }
                 else { //string nao comeca com i
-                    for(int j = 0; j < entrada[i]; j++) { //-1 pq 1 ja foi no resp
+                    for(int j = 0; j < (entrada[i] - '0'); j++) {
                         NO* novo = (NO*)malloc(sizeof(NO));
                         novo->ch = entrada[i+1];
                         novo->prox = NULL;
@@ -181,19 +179,16 @@ NO* decodificar(char* entrada) {
             }
         }
     }
-
-	printf("\ndecodificar_fim (1 linha antes do 'return resp')\n");
 	return resp;
 }
 //---------------------------------------------------------
 // use main() para fazer chamadas de teste ao seu programa
 //---------------------------------------------------------
 int main() {
-    printf("\nmain_comeco\n");
-
-	char entrada[] = "frase de teste5!";
+    char entrada[] = "";
 
     printf("\n");
+    printf("Entrada: ");
 	printf(entrada);
     printf("\n");
 
@@ -201,10 +196,12 @@ int main() {
 
 	teste = decodificar(entrada);
 
+	printf("\n");
+	printf("Saida: ");
 	while(teste) {
         printf("%c",teste->ch);
         teste=teste->prox;
 	}
+	printf("\n");
 
-    printf("\nmain_fim\n");
 }

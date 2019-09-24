@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1569281988 source:/home/pedros/Documents/Decoder-in-C/ep_ivandre_0.0/main.c
+1569325329 source:/home/pedros/Documents/Decoder-in-C/ep_ivandre_0.0/main.c
 	<stdio.h>
 	<stdlib.h>
 	<curses.h>
