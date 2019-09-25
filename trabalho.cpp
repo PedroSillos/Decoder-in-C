@@ -4,8 +4,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-//#include <conio.h>
-#include <curses.h>
+#include <conio.h>
 #include <malloc.h>
 #include <string.h>
 
@@ -184,24 +183,13 @@ NO* decodificar(char* entrada) {
 //---------------------------------------------------------
 // use main() para fazer chamadas de teste ao seu programa
 //---------------------------------------------------------
-int main() {
-    char entrada[] = "";
 
-    printf("\n");
-    printf("Entrada: ");
-	printf(entrada);
-    printf("\n");
+/*int main() {
+
+    char entrada[] = "Frase de Teste5!";
 
 	NO* teste = NULL;
 
 	teste = decodificar(entrada);
 
-	printf("\n");
-	printf("Saida: ");
-	while(teste) {
-        printf("%c",teste->ch);
-        teste=teste->prox;
-	}
-	printf("\n");
-
-}
+}*/
